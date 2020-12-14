@@ -7,6 +7,7 @@ function App() {
 
   const [ movies, setMovies ] = useState([]);
   const [ searchTerm, setSearchTerm ] = useState("");
+  const [ saveSearch, setSaveSearch ] = useState("");
   const [ defaultHeading, setDefaultHeading ] = useState("Search Movies")
   const [ movieClicked, setMovieClicked ] = useState([]);
   const [ mouseClick, setMouseClick ] = useState(false);
@@ -34,6 +35,7 @@ function App() {
             setDefaultHeading("Sorry.. The movie you search for cannot be found, try again!")
             setMovies([]);
             }  
+            setSaveSearch(searchTerm);
       });
       
       } 
@@ -71,25 +73,33 @@ function App() {
     }
 
     function submitMovieClick (id) {
-      fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=767038b79e20f01359849568b691b994&language=en-US`)
+      console.log(id);
+          fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=767038b79e20f01359849568b691b994&language=en-US`)
           .then((res) => res.json())
           .then((data) => {
             setMovieClicked(data);
-            setDefaultHeading(data.title)
+            setDefaultHeading("");
           })
         setMovies([]);
         setMouseClick(true);
-  
     }
 
-    function submitBack () {
+    function submitBack (id) {
       setMouseClick(false);
-      fetch(process.env.REACT_APP_DEFAULT_API)
-        .then((res) => res.json())
-        .then((data) => { 
-          setMovies(data.results);
-        });
-        setDefaultHeading("Search Movies")
+        if (saveSearch) {
+          fetch(process.env.REACT_APP_SEARCH_API + saveSearch)
+          .then((res) => res.json())
+          .then((data) => { 
+            setMovies(data.results);
+          });
+        } else {
+          fetch(process.env.REACT_APP_DEFAULT_API)
+          .then((res) => res.json())
+          .then((data) => {
+            setMovies(data.results)
+          });
+        }
+          setDefaultHeading("Search Movies")
     }
     
   return (
@@ -97,11 +107,11 @@ function App() {
          {mouseClick ? null : 
          <div className="search">
          <form onSubmit={handleSubmit}>
-         <i aria-label="submit search" className="fas fa-search"></i> 
+         <i aria-label="submit search" className="search-icon fas fa-search"></i> 
          <input
          onChange={findSearch}
          value={searchTerm} 
-         type="search" 
+         type="text" 
          />
          </form>
         </div>}
@@ -114,7 +124,8 @@ function App() {
         </ul>
        
         </div>}
-        <h1>{defaultHeading}</h1>
+        <div className="defaultHeading-error"><h1>{defaultHeading}</h1></div>
+        
 
     {mouseClick ? 
     <MovieInfo 

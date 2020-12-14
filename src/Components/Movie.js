@@ -5,7 +5,7 @@ function Movie(props) {
     const IMG_API = "https://image.tmdb.org/t/p/w500/"
 
     function handleMovieClick () {
-        props.submitMovieClick(props.id)
+        props.submitMovieClick(props.id);
     }
 
     return (

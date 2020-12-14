@@ -6,7 +6,7 @@ function MovieInfo(props) {
     const IMG_API = "https://image.tmdb.org/t/p/w500/"
 
     function handleBack () {
-        props.submitBack(); 
+        props.submitBack(props.id); 
     }
 
     return (
@@ -32,13 +32,12 @@ function MovieInfo(props) {
                 </ul>
                 </div>
 
-               
                 <div className="card-right-rating">
-                <i class="fas fa-md fa-star"></i>
-                <i class="fas fa-md fa-star"></i>
-                <i class="fas fa-md fa-star"></i>
-                <i class="fas fa-md fa-star"></i>
-                <i class="fas fa-md fa-star"></i> 
+                <i className="fas fa-md fa-star"></i>
+                <i className="fas fa-md fa-star"></i>
+                <i className="fas fa-md fa-star"></i>
+                <i className="fas fa-md fa-star"></i>
+                <i className="fas fa-md fa-star"></i> 
                 <p>{props.vote_average}</p>
                 </div>
 
@@ -47,14 +46,15 @@ function MovieInfo(props) {
                     <a href={INFO_URL + props.id}>Read More</a>
                 </div>
                 <div className="card-right-button">
-                    <a href={INFO_URL + props.id}><i class="fas fa-xs fa-play"></i> WATCH TRAILER</a>
+                    <a href={INFO_URL + props.id}><i className="fas fa-xs fa-play"></i> WATCH TRAILER</a>
                 </div>
 
                 </div>    
-        </div>    
-        : <h1>Sorry! Cant find any info about that movie, try again later..</h1>}
+        </div>  
+        
+        : <div className="error-heading"><h1>Sorry! Cant find any info about that movie, try again later..</h1></div>  }
             <div onClick={handleBack} className="back-button">
-            <a href="/#"><i class="fas fa-lg fa-arrow-circle-left"></i> </a>
+            <a href="/#"><i className="fas fa-lg fa-arrow-circle-left"></i> </a>
             <h3>Back To Search</h3>
             </div>
             

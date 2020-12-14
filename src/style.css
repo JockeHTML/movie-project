@@ -61,6 +61,7 @@ h2 {
   display: flex;
   justify-content: center;
   font-family: "Poppins", sans-serif;
+  box-shadow: none;
 }
 
 .fa-film {
@@ -103,19 +104,23 @@ h2 {
 
 /* Search */
 .search input {
+  margin-left: 4px;
   position: relative;
-  background: transparent;
+  background: white;
   padding: 0 10px;
   height: 35px;
   line-height: 35px;
   width: calc(100% - 20px);
-  border: 0;
-  border-bottom: 1px solid grey;
+  border: 1px solid transparent;
   outline: 1px;
   font-size: 20px;
   font-family: inherit;
-  color: #e9eaeb;
+  color: black;
   transition: border-bottom 0.3s;
+}
+
+.search input:focus {
+  border: 1px solid grey;
 }
 
 .search {
@@ -126,8 +131,8 @@ h2 {
   margin-bottom: 25px !important;
 }
 
-.search input:focus {
-  border-bottom: 1px solid #e9eaeb;
+.search-icon {
+  font-size: 1rem;
 }
 
 /* Default movies */
@@ -139,7 +144,7 @@ h2 {
   overflow: hidden;
   cursor: pointer;
   border-radius: 3px;
-  box-shadow: 3px 3px 5px #14171e;
+  box-shadow: 2px 2px 2px #121d36;
 }
 
 .movie:hover h3 {
@@ -165,7 +170,7 @@ h2 {
 
 /* Movie details */
 .movie-details-container {
-  box-shadow: 3px 3px 5px #14171e;
+  box-shadow: 2px 2px 2px #121d36;
   border-radius: 10px;
   display: flex;
   width: 900px;
@@ -370,7 +375,7 @@ h2 {
     text-align: center;
     width: 100%;
     border-radius: 10px 10px;
-    box-shadow: 3px 3px 5px #14171e;
+    box-shadow: 2px 2px 2px #121d36;
     overflow: hidden;
   }
   .left-div {
@@ -379,7 +384,7 @@ h2 {
     text-align: center;
     width: 100%;
     border-radius: 10px 10px;
-    box-shadow: 3px 3px 5px #14171e;
+    box-shadow: 2px 2px 2px #121d36;
   }
   .movie-details-container img {
     object-fit: cover;
@@ -392,16 +397,22 @@ h2 {
 }
 
 @media (max-width: 768px) {
+  .defaultHeading-error h1 {
+    font-size: 1.4rem;
+  }
+  .error-heading h1 {
+    font-size: 1.4rem;
+  }
   .movie-details-container {
     margin-top: 20px;
-    width: 65%;
+    width: 80%;
   }
   .search {
-    width: 65%;
+    width: 80%;
   }
   .nav button {
-    font-size: 1.3rem;
-    padding: 5px;
+    font-size: 1.2rem;
+    padding: 2px;
     margin: 0;
   }
   h1 {
@@ -414,12 +425,7 @@ h2 {
   .nav li {
     padding: 7px;
   }
-}
-
-@media (max-width: 350px) {
   .nav ul {
     padding-left: 0;
-    margin: auto;
-    display: inline-block;
   }
 }

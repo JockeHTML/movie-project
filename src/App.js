@@ -75,10 +75,11 @@ function App() {
           .then((res) => res.json())
           .then((data) => {
             setMovieClicked(data);
+            setDefaultHeading(data.title)
           })
         setMovies([]);
         setMouseClick(true);
-        setDefaultHeading("")
+  
     }
 
     function submitBack () {

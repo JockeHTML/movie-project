@@ -333,7 +333,7 @@ h2 {
   }
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (max-width: 950px) {
   h1 {
     font-size: 2.3rem;
   }
@@ -391,18 +391,13 @@ h2 {
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 768px) {
   .movie-details-container {
     margin-top: 20px;
     width: 65%;
-    flex-direction: column;
   }
   .search {
     width: 65%;
-  }
-  .nav {
-    display: flex;
-    flex-direction: column;
   }
   .nav button {
     font-size: 1.3rem;
@@ -410,19 +405,21 @@ h2 {
     margin: 0;
   }
   h1 {
-    padding: 1.4rem;
     margin: 0;
     font-size: 2rem;
   }
   .nav i {
     font-size: 1rem;
   }
+  .nav li {
+    padding: 7px;
+  }
+}
+
+@media (max-width: 350px) {
   .nav ul {
     padding-left: 0;
     margin: auto;
     display: inline-block;
-  }
-  .nav li {
-    padding: 7px;
   }
 }

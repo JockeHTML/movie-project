@@ -5,6 +5,7 @@ import MovieInfo from './Components/MovieInfo';
 
 function App() {
 
+  /* different states us with useState hook */
   const [ movies, setMovies ] = useState([]);
   const [ searchTerm, setSearchTerm ] = useState("");
   const [ saveSearch, setSaveSearch ] = useState("");
@@ -12,6 +13,7 @@ function App() {
   const [ movieClicked, setMovieClicked ] = useState([]);
   const [ mouseClick, setMouseClick ] = useState(false);
 
+  /* useState hook used for when page load to get movies from api */
   useEffect(() => {
       fetch(process.env.REACT_APP_DEFAULT_API)
       .then((res) => res.json())
@@ -21,6 +23,7 @@ function App() {
     },
     []);
 
+    /* handle search query if there is one and find that movie from api */
     function handleSubmit (event) {
       event.preventDefault();
       if (searchTerm) {
@@ -41,6 +44,7 @@ function App() {
       } 
     }
 
+    /* movies movie api call */ 
     function handleMovie () {
       fetch(process.env.REACT_APP_MOVIE_API)
         .then((res) => res.json())
@@ -50,6 +54,7 @@ function App() {
       setDefaultHeading("Movies")
     }
 
+    /* popular movie api call */
     function handlePopular () {
       fetch(process.env.REACT_APP_DEFAULT_API)
         .then((res) => res.json())
@@ -59,6 +64,7 @@ function App() {
       setDefaultHeading("Popular")
     }
 
+    /* trending movie api call */
     function handleTrending () {
       fetch(process.env.REACT_APP_TRENDING_API)
         .then((res) => res.json())
@@ -68,12 +74,13 @@ function App() {
       setDefaultHeading("Trending")
     }
 
+    /* find search query */
     function findSearch (event) {
       setSearchTerm(event.target.value);
     }
 
+    /* submit search query and get that movie with api call and query */
     function submitMovieClick (id) {
-      console.log(id);
           fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=767038b79e20f01359849568b691b994&language=en-US`)
           .then((res) => res.json())
           .then((data) => {
@@ -84,6 +91,7 @@ function App() {
         setMouseClick(true);
     }
 
+    /* handle back button with reload of default movies or previous search */
     function submitBack (id) {
       setMouseClick(false);
         if (saveSearch) {

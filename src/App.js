@@ -19,7 +19,8 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setMovies(data.results);
-      });
+      })
+      .catch(err => console.log(err));
     },
     []);
 
@@ -39,8 +40,8 @@ function App() {
             setMovies([]);
             }  
             setSaveSearch(searchTerm);
-      });
-      
+      })
+      .catch(err => console.log(err));  
       } 
     }
 
@@ -50,7 +51,8 @@ function App() {
         .then((res) => res.json())
         .then((data) => {
           setMovies(data.results)
-        });
+        })
+      .catch(err => console.log(err));
       setDefaultHeading("Movies")
     }
 
@@ -60,7 +62,8 @@ function App() {
         .then((res) => res.json())
         .then((data) => {
           setMovies(data.results)
-        });
+        })
+      .catch(err => console.log(err));
       setDefaultHeading("Popular")
     }
 
@@ -70,7 +73,8 @@ function App() {
         .then((res) => res.json())
         .then((data) => {
           setMovies(data.results)
-        });
+        })
+      .catch(err => console.log(err));
       setDefaultHeading("Trending")
     }
 
@@ -87,6 +91,7 @@ function App() {
             setMovieClicked(data);
             setDefaultHeading("");
           })
+        .catch(err => console.log(err));
         setMovies([]);
         setMouseClick(true);
     }
@@ -99,13 +104,15 @@ function App() {
           .then((res) => res.json())
           .then((data) => { 
             setMovies(data.results);
-          });
+          })
+        .catch(err => console.log(err));
         } else {
           fetch(process.env.REACT_APP_DEFAULT_API)
           .then((res) => res.json())
           .then((data) => {
             setMovies(data.results)
-          });
+          })
+        .catch(err => console.log(err));
         }
           setDefaultHeading("Search Movies")
     }
